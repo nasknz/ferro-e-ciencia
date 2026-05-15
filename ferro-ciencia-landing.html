@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FERRO & CIÊNCIA — O Método Completo de Musculação</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #080808;
+  --dark: #111111;
+  --card: #161616;
+  --border: #242424;
+  --accent: #e8ff00;
+  --accent2: #ff4500;
+  --white: #f0f0ee;
+  --muted: #777;
+  --display: 'Bebas Neue', sans-serif;
+  --body: 'DM Sans', sans-serif;
+  --mono: 'DM Mono', monospace;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── NOISE TEXTURE ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.4;
+}
+
+/* ── STICKY NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 16px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(8,8,8,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: var(--display);
+  font-size: 22px;
+  letter-spacing: 0.06em;
+  color: var(--white);
+}
+.nav-logo span { color: var(--accent); }
+.nav-cta {
+  background: var(--accent);
+  color: var(--black);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 10px 22px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+.nav-cta:hover { background: var(--white); transform: translateY(-1px); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 120px 48px 80px;
+  overflow: hidden;
+}
+.hero-bg-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--display);
+  font-size: clamp(200px, 30vw, 400px);
+  color: rgba(232,255,0,0.025);
+  white-space: nowrap;
+  pointer-events: none;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+}
+.hero-tag {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hero-tag::before {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: var(--accent);
+}
+.hero h1 {
+  font-family: var(--display);
+  font-size: clamp(64px, 9vw, 110px);
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+  margin-bottom: 24px;
+}
+.hero h1 em {
+  color: var(--accent);
+  font-style: normal;
+  display: block;
+}
+.hero-desc {
+  font-size: 18px;
+  color: #aaa;
+  font-weight: 300;
+  max-width: 440px;
+  margin-bottom: 40px;
+  line-height: 1.8;
+}
+.hero-price-block {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.price-old {
+  font-family: var(--mono);
+  font-size: 18px;
+  color: var(--muted);
+  text-decoration: line-through;
+}
+.price-new {
+  font-family: var(--display);
+  font-size: 56px;
+  color: var(--accent);
+  line-height: 1;
+}
+.price-installment {
+  font-size: 13px;
+  color: var(--muted);
+}
+.btn-primary {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--black);
+  font-family: var(--display);
+  font-size: 22px;
+  letter-spacing: 0.08em;
+  padding: 18px 48px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::after {
+  content: '→';
+  margin-left: 12px;
+  transition: transform 0.2s;
+  display: inline-block;
+}
+.btn-primary:hover { background: var(--white); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(232,255,0,0.25); }
+.btn-primary:hover::after { transform: translateX(4px); }
+.btn-guarantee {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--muted);
+  font-family: var(--mono);
+  letter-spacing: 0.05em;
+}
+.btn-guarantee svg { color: var(--accent); flex-shrink: 0; }
+
+/* HERO BOOK MOCKUP */
+.hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.book-mockup {
+  width: 300px;
+  height: 400px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+  border: 1px solid var(--border);
+  position: relative;
+  box-shadow: 20px 20px 60px rgba(0,0,0,0.8), -4px -4px 20px rgba(232,255,0,0.05);
+  transform: perspective(800px) rotateY(-8deg) rotateX(2deg);
+  transition: transform 0.4s ease;
+}
+.book-mockup:hover { transform: perspective(800px) rotateY(-2deg) rotateX(1deg); }
+.book-spine {
+  position: absolute;
+  left: -18px;
+  top: 0;
+  bottom: 0;
+  width: 18px;
+  background: linear-gradient(90deg, #0a0a0a, #1c1c1c);
+  border-left: 1px solid rgba(232,255,0,0.15);
+}
+.book-cover {
+  width: 100%; height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 32px 28px;
+  position: relative;
+  overflow: hidden;
+}
+.book-cover::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 200px; height: 200px;
+  border: 40px solid rgba(232,255,0,0.06);
+  border-radius: 50%;
+}
+.book-cover::after {
+  content: '';
+  position: absolute;
+  bottom: -20px; left: -20px;
+  width: 120px; height: 120px;
+  border: 25px solid rgba(255,69,0,0.08);
+  border-radius: 50%;
+}
+.book-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+.book-title {
+  font-family: var(--display);
+  font-size: 48px;
+  line-height: 0.9;
+  color: var(--white);
+  position: relative;
+  z-index: 1;
+}
+.book-title span { color: var(--accent); display: block; }
+.book-sub {
+  font-size: 11px;
+  color: #555;
+  font-family: var(--mono);
+  letter-spacing: 0.1em;
+  position: relative;
+  z-index: 1;
+}
+.book-stripe {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 6px;
+  background: var(--accent);
+}
+.hero-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 40px;
+}
+.hero-stat {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  color: #888;
+}
+.hero-stat-dot {
+  width: 6px; height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── URGENCY BAR ── */
+.urgency-bar {
+  background: var(--accent2);
+  padding: 14px 48px;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.urgency-timer {
+  font-family: var(--display);
+  font-size: 22px;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+
+/* ── SECTIONS GENERIC ── */
+section { padding: 100px 48px; max-width: 1200px; margin: 0 auto; }
+.section-tag {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.section-title {
+  font-family: var(--display);
+  font-size: clamp(40px, 6vw, 72px);
+  line-height: 0.95;
+  margin-bottom: 20px;
+  letter-spacing: 0.01em;
+}
+.section-title em { color: var(--accent); font-style: normal; }
+.section-sub {
+  font-size: 17px;
+  color: #888;
+  font-weight: 300;
+  max-width: 560px;
+  margin-bottom: 60px;
+}
+
+/* ── PAIN SECTION ── */
+.pain-section { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.pain-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-top: 60px;
+}
+.pain-card {
+  background: var(--card);
+  padding: 36px 32px;
+  position: relative;
+}
+.pain-icon {
+  font-size: 32px;
+  margin-bottom: 16px;
+  display: block;
+}
+.pain-card h3 {
+  font-family: var(--display);
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+  color: var(--white);
+}
+.pain-card p { font-size: 15px; color: #777; font-weight: 300; margin: 0; }
+
+/* ── WHAT'S INSIDE ── */
+.chapters-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-top: 60px;
+}
+.chapter-item {
+  background: var(--card);
+  padding: 28px 32px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  transition: background 0.2s;
+}
+.chapter-item:hover { background: #1c1c1c; }
+.ch-num {
+  font-family: var(--display);
+  font-size: 42px;
+  color: rgba(232,255,0,0.2);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 52px;
+}
+.ch-content h4 {
+  font-family: var(--display);
+  font-size: 20px;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+  color: var(--white);
+}
+.ch-content p { font-size: 13px; color: #666; font-weight: 300; margin: 0; }
+
+/* ── FOR WHO ── */
+.forwho-section { background: #0d0d0d; }
+.forwho-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-top: 60px;
+}
+.forwho-col h3 {
+  font-family: var(--display);
+  font-size: 28px;
+  letter-spacing: 0.04em;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.forwho-col.yes h3 { color: var(--accent); border-color: var(--accent); }
+.forwho-col.no h3 { color: var(--accent2); border-color: var(--accent2); }
+.forwho-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+.forwho-list li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  font-size: 15px;
+  color: #999;
+  font-weight: 300;
+}
+.forwho-list li::before {
+  content: '✓';
+  font-family: var(--mono);
+  font-size: 13px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.forwho-col.yes li::before { color: var(--accent); }
+.forwho-col.no li::before { content: '✗'; color: var(--accent2); }
+
+/* ── SOCIAL PROOF ── */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+  margin-top: 60px;
+}
+.testimonial {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 28px;
+  position: relative;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.testimonial:hover { border-color: rgba(232,255,0,0.3); transform: translateY(-3px); }
+.testimonial::before {
+  content: '"';
+  position: absolute;
+  top: 16px; right: 20px;
+  font-family: var(--display);
+  font-size: 80px;
+  color: rgba(232,255,0,0.08);
+  line-height: 1;
+}
+.testimonial-stars {
+  color: var(--accent);
+  font-size: 14px;
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+}
+.testimonial p {
+  font-size: 15px;
+  color: #bbb;
+  font-weight: 300;
+  margin: 0 0 20px;
+  font-style: italic;
+  line-height: 1.7;
+  position: relative;
+  z-index: 1;
+}
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.author-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--display);
+  font-size: 18px;
+  color: var(--black);
+  flex-shrink: 0;
+}
+.author-info strong {
+  display: block;
+  font-size: 14px;
+  color: var(--white);
+  font-weight: 500;
+}
+.author-info span {
+  font-size: 12px;
+  color: var(--muted);
+  font-family: var(--mono);
+}
+
+/* ── NUMBERS PROOF ── */
+.numbers-section {
+  background: var(--accent);
+  padding: 80px 48px;
+  max-width: 100%;
+}
+.numbers-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 48px;
+  text-align: center;
+}
+.number-item strong {
+  font-family: var(--display);
+  font-size: 72px;
+  color: var(--black);
+  display: block;
+  line-height: 1;
+}
+.number-item span {
+  font-size: 14px;
+  color: rgba(0,0,0,0.6);
+  font-family: var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ── BONUSES ── */
+.bonuses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 60px;
+}
+.bonus-card {
+  border: 1px solid var(--border);
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+  background: var(--card);
+  transition: border-color 0.2s;
+}
+.bonus-card:hover { border-color: var(--accent); }
+.bonus-tag {
+  display: inline-block;
+  background: rgba(232,255,0,0.12);
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  margin-bottom: 16px;
+}
+.bonus-card h4 {
+  font-family: var(--display);
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+  color: var(--white);
+}
+.bonus-card p { font-size: 14px; color: #666; margin: 0 0 16px; font-weight: 300; }
+.bonus-value {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+}
+
+/* ── GUARANTEE ── */
+.guarantee-section {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.guarantee-inner {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.guarantee-badge {
+  width: 180px;
+  height: 180px;
+  border: 3px solid var(--accent);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+.guarantee-badge::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(232,255,0,0.2);
+  border-radius: 50%;
+}
+.guarantee-badge-days {
+  font-family: var(--display);
+  font-size: 64px;
+  color: var(--accent);
+  line-height: 1;
+}
+.guarantee-badge-text {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  text-transform: uppercase;
+  text-align: center;
+}
+.guarantee-content h2 {
+  font-family: var(--display);
+  font-size: 42px;
+  letter-spacing: 0.03em;
+  margin-bottom: 16px;
+}
+.guarantee-content p { color: #888; font-weight: 300; margin: 0; }
+
+/* ── FINAL CTA ── */
+.final-cta {
+  background: var(--dark);
+  padding: 120px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  max-width: 100%;
+}
+.final-cta::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(232,255,0,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.final-cta-inner {
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+}
+.final-cta h2 {
+  font-family: var(--display);
+  font-size: clamp(48px, 7vw, 88px);
+  line-height: 0.95;
+  margin-bottom: 24px;
+  letter-spacing: 0.01em;
+}
+.final-cta h2 em { color: var(--accent); font-style: normal; }
+.final-cta p { color: #777; font-weight: 300; font-size: 18px; margin-bottom: 48px; }
+.cta-package {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 40px;
+  margin-bottom: 32px;
+  text-align: left;
+}
+.cta-package-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.cta-includes { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+.cta-includes li {
+  display: flex;
+  gap: 12px;
+  font-size: 15px;
+  color: #ccc;
+  font-weight: 300;
+}
+.cta-includes li::before {
+  content: '✓';
+  color: var(--accent);
+  font-family: var(--mono);
+  flex-shrink: 0;
+}
+.cta-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.cta-old { font-family: var(--mono); font-size: 16px; color: var(--muted); text-decoration: line-through; }
+.cta-new { font-family: var(--display); font-size: 64px; color: var(--accent); line-height: 1; }
+.cta-note { font-size: 13px; color: var(--muted); }
+.btn-cta-big {
+  display: block;
+  width: 100%;
+  background: var(--accent);
+  color: var(--black);
+  font-family: var(--display);
+  font-size: 26px;
+  letter-spacing: 0.08em;
+  padding: 22px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.25s;
+}
+.btn-cta-big:hover { background: var(--white); transform: translateY(-2px); box-shadow: 0 16px 48px rgba(232,255,0,0.2); }
+.security-row {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+.security-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--muted);
+  font-family: var(--mono);
+  letter-spacing: 0.05em;
+}
+.security-item svg { color: var(--accent); }
+
+/* ── FAQ ── */
+.faq-list { margin-top: 60px; display: flex; flex-direction: column; gap: 1px; background: var(--border); }
+.faq-item { background: var(--card); }
+.faq-question {
+  padding: 24px 28px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: color 0.2s;
+  color: var(--white);
+  user-select: none;
+}
+.faq-question:hover { color: var(--accent); }
+.faq-icon {
+  font-family: var(--display);
+  font-size: 24px;
+  color: var(--accent);
+  transition: transform 0.3s;
+  flex-shrink: 0;
+}
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s;
+  padding: 0 28px;
+  font-size: 15px;
+  color: #888;
+  font-weight: 300;
+}
+.faq-item.open .faq-answer { max-height: 200px; padding: 0 28px 24px; }
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+
+/* ── FOOTER ── */
+footer {
+  padding: 48px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: gap;
+  gap: 16px;
+}
+.footer-logo { font-family: var(--display); font-size: 20px; letter-spacing: 0.06em; }
+.footer-logo span { color: var(--accent); }
+footer p { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero-content { animation: fadeUp 0.8s ease forwards; }
+.hero-visual { animation: fadeUp 0.8s 0.2s ease both; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 14px 24px; }
+  .hero { padding: 100px 24px 60px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+  .hero-visual { order: -1; }
+  section { padding: 64px 24px; }
+  .chapters-grid { grid-template-columns: 1fr; }
+  .forwho-grid { grid-template-columns: 1fr; }
+  .numbers-inner { grid-template-columns: repeat(2, 1fr); }
+  .guarantee-inner { grid-template-columns: 1fr; text-align: center; }
+  .guarantee-badge { margin: 0 auto; }
+  .final-cta { padding: 80px 24px; }
+  footer { padding: 32px 24px; flex-direction: column; text-align: center; }
+  .urgency-bar { padding: 14px 24px; flex-direction: column; gap: 6px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-logo">FERRO <span>&</span> CIÊNCIA</div>
+  <a href="https://pay.cakto.com.br/39jq84j_884977" target="_blank" class="nav-cta">Quero o ebook</a>
+</nav>
+
+<!-- ── URGENCY BAR ── -->
+<div class="urgency-bar">
+  🔥 OFERTA RELÂMPAGO — Encerra em:
+  <span class="urgency-timer" id="timer">02:47:33</span>
+  — Após isso o preço volta ao normal
+</div>
+
+<!-- ── HERO ── -->
+<div style="padding-top: 60px;">
+  <div style="max-width:1200px; margin: 0 auto;">
+    <div class="hero">
+      <div class="hero-bg-text">FERRO</div>
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-tag">Ebook Digital · Edição 2025</div>
+          <h1>FERRO<br>&amp; <em>CIÊNCIA</em></h1>
+          <p class="hero-desc">Chega de treinar no achismo. Este é o método completo de musculação — do primeiro agachamento ao treino avançado, com ciência aplicada em cada página.</p>
+          <div class="hero-price-block">
+            <span class="price-old">R$ 47</span>
+            <span class="price-new">R$ 19,90</span>
+          </div>
+          <p class="price-installment" style="color:#666; font-size:14px; margin-bottom: 28px; font-family: var(--mono);">pagamento único · acesso imediato</p>
+          <a href="https://pay.cakto.com.br/39jq84j_884977" target="_blank" class="btn-primary">QUERO TREINAR COM CIÊNCIA</a>
+          <div class="btn-guarantee">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Garantia de 7 dias · Risco zero
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat"><span class="hero-stat-dot"></span>+12.000 alunos transformados</div>
+            <div class="hero-stat"><span class="hero-stat-dot"></span>10 capítulos baseados em ciência</div>
+            <div class="hero-stat"><span class="hero-stat-dot"></span>3 programas prontos para aplicar hoje</div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="book-mockup">
+            <div class="book-spine"></div>
+            <div class="book-cover">
+              <div class="book-label">Ebook Completo · 2025</div>
+              <div>
+                <div class="book-title">FERRO<span>&</span>CIÊN<br>CIA</div>
+              </div>
+              <div class="book-sub">O MÉTODO COMPLETO DE MUSCULAÇÃO</div>
+              <div class="book-stripe"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── NUMBERS ── -->
+<div class="numbers-section">
+  <div class="numbers-inner">
+    <div class="number-item"><strong>12K+</strong><span>Alunos</span></div>
+    <div class="number-item"><strong>4.9★</strong><span>Avaliação média</span></div>
+    <div class="number-item"><strong>10</strong><span>Capítulos</span></div>
+    <div class="number-item"><strong>7 dias</strong><span>De garantia</span></div>
+  </div>
+</div>
+
+<!-- ── PAIN ── -->
+<div style="background: #0a0a0a; border-top: 1px solid #1a1a1a; border-bottom: 1px solid #1a1a1a;">
+  <section class="pain-section" style="border: none;">
+    <div class="section-tag">Você se identifica?</div>
+    <h2 class="section-title">Treina há meses<br>e não vê <em>resultado?</em></h2>
+    <p class="section-sub">Se você chegou até aqui, provavelmente conhece bem essa frustração. Você não está sozinho.</p>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <span class="pain-icon">😓</span>
+        <h3>Sem progressão</h3>
+        <p>Você treina há meses, mas a carga não aumenta e o corpo não muda. A estagnação parece permanente.</p>
+      </div>
+      <div class="pain-card">
+        <span class="pain-icon">🍕</span>
+        <h3>Dieta confusa</h3>
+        <p>Não sabe se deve comer mais, comer menos, cortar carbo, fazer jejum. O excesso de informação paralisa.</p>
+      </div>
+      <div class="pain-card">
+        <span class="pain-icon">😵</span>
+        <h3>Informação demais</h3>
+        <p>YouTube, Instagram, TikTok — cada um fala uma coisa diferente. Você segue tudo e não segue nada.</p>
+      </div>
+      <div class="pain-card">
+        <span class="pain-icon">💸</span>
+        <h3>Suplementos que não funcionam</h3>
+        <p>Gastou uma fortuna em pré-treino, BCAA e termogênico. Os resultados? Quase nenhum.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ── WHAT'S INSIDE ── -->
+<section>
+  <div class="section-tag">O que você vai aprender</div>
+  <h2 class="section-title">10 capítulos.<br><em>Uma transformação.</em></h2>
+  <p class="section-sub">Cada capítulo foi construído com base em evidências científicas, linguagem clara e aplicação imediata.</p>
+  <div class="chapters-grid">
+    <div class="chapter-item">
+      <div class="ch-num">01</div>
+      <div class="ch-content">
+        <h4>INTRODUÇÃO</h4>
+        <p>Benefícios reais da musculação. Mitos desmontados com ciência.</p>
+      </div>
+    </div>
+    <div class="chapter-item">
+      <div class="ch-num">02</div>
+      <div class="ch-content">
+        <h4>FUNDAMENTOS CIENTÍFICOS</h4>
+        <p>Como o músculo cresce, tipos de fibras e os 3 mecanismos da hipertrofia.</p>
+      </div>
+    </div>
+    <div class="chapter-item">
+      <div class="ch-num">03</div>
+      <div class="ch-content">
+        <h4>PLANEJAMENTO DO TREINO</h4>
+        <p>Full Body ao ABCDE. Volume, intensidade, frequência e periodização.</p>
+      </div>
+    </div>
+    <div class="chapter-item">
+      <div class="ch-num">04</div>
+      <div class="ch-content">
+        <h4>EXERCÍCIOS ESSENCIAIS</h4>
+        <p>Compostos e isolados, execução correta, músculos e erros comuns.</p>
+      </div>
+    </div>
+    <div class="chapter-item">
+      <div class="ch-num">05</div>
+      <div class="ch-content">
+        <h4>PROGRAMAS PRONTOS</h4>
+        <p>3 programas completos: iniciante, intermediário e avançado. Aplicáveis hoje.</p>
+      </div>
+    </div>
+    <div class="chapter-item">
+      <div class="ch-num">06</div>
+      <div class="ch-content">
+        <h4>NUTRIÇÃO</h4>
+        <p>Macros, cálculo de calorias, nutrição peri-treino e suplementação real.</p>
+      </div>
+    </div>
+    <div class="chapter-item">
+      <div class="ch-num">07</div>
+      <div class="ch-content">
+        <h4>RECUPERAÇÃO</h4>
+        <p>Sono, recuperação ativa e como evitar o overtraining de vez.</p>
+      </div>
+    </div>
+    <div class="chapter-item">
+      <div class="ch-num">08</div>
+      <div class="ch-content">
+        <h4>ERROS MAIS COMUNS</h4>
+        <p>Os erros de treino, nutrição e mentalidade que travam 90% das pessoas.</p>
+      </div>
+    </div>
+    <div class="chapter-item">
+      <div class="ch-num">09</div>
+      <div class="ch-content">
+        <h4>ACOMPANHAMENTO</h4>
+        <p>Métricas, fotos, medidas e como saber se você está evoluindo de verdade.</p>
+      </div>
+    </div>
+    <div class="chapter-item">
+      <div class="ch-num">10</div>
+      <div class="ch-content">
+        <h4>CONCLUSÃO</h4>
+        <p>Mentalidade de longo prazo e o roadmap dos próximos 2 anos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOR WHO ── -->
+<div class="forwho-section" style="background:#0a0a0a; border-top: 1px solid #1a1a1a; border-bottom: 1px solid #1a1a1a;">
+  <section style="background: transparent;">
+    <div class="section-tag">Para quem é</div>
+    <h2 class="section-title">Este ebook é <em>para você</em><br>ou não é?</h2>
+    <div class="forwho-grid">
+      <div class="forwho-col yes">
+        <h3>✓ É para você se...</h3>
+        <ul class="forwho-list">
+          <li>Quer entender a ciência por trás do treino, não só seguir planilhas cegas</li>
+          <li>Está começando e quer evitar os erros que custam meses de progresso</li>
+          <li>Treina há anos mas sente que estacionou e não sabe por quê</li>
+          <li>Quer montar sua própria dieta sem depender de profissional para tudo</li>
+          <li>Busca resultado real, sem fórmulas mágicas ou atalhos</li>
+          <li>Quer um guia completo e confiável num só lugar</li>
+        </ul>
+      </div>
+      <div class="forwho-col no">
+        <h3>✗ Não é para você se...</h3>
+        <ul class="forwho-list">
+          <li>Procura resultado em 2 semanas sem esforço consistente</li>
+          <li>Quer uma solução mágica sem comprometimento</li>
+          <li>Não está disposto a aprender sobre o próprio corpo</li>
+          <li>Prefere continuar comprando suplementos sem base científica</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ── TESTIMONIALS ── -->
+<section>
+  <div class="section-tag">Prova Social</div>
+  <h2 class="section-title">O que quem já leu<br><em>está dizendo</em></h2>
+  <p class="section-sub">+12.000 pessoas já transformaram seus treinos com FERRO & CIÊNCIA.</p>
+  <div class="testimonials-grid">
+    <div class="testimonial">
+      <div class="testimonial-stars">★★★★★</div>
+      <p>"Comprei achando que era mais do mesmo. Me surpreendi com a profundidade do conteúdo. Em 3 meses aumentei 8kg no supino seguindo o programa de intermediário."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">R</div>
+        <div class="author-info">
+          <strong>Rafael M.</strong>
+          <span>Intermediário · SP</span>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <div class="testimonial-stars">★★★★★</div>
+      <p>"O capítulo de nutrição sozinho valeu o preço. Finalmente entendi como calcular minhas calorias e parei de ficar perdida com dieta. Perdi 4kg em 6 semanas sem passar fome."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">J</div>
+        <div class="author-info">
+          <strong>Juliana F.</strong>
+          <span>Iniciante · MG</span>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <div class="testimonial-stars">★★★★★</div>
+      <p>"Treino há 4 anos e ainda aprendi muita coisa. A parte de periodização foi um divisor de águas pra mim. Recomendo até para quem já é avançado."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">G</div>
+        <div class="author-info">
+          <strong>Gabriel T.</strong>
+          <span>Avançado · RJ</span>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <div class="testimonial-stars">★★★★★</div>
+      <p>"Tava sofrendo de overtraining sem saber. Li o capítulo 7 e identifiquei exatamente o que estava acontecendo. Fiz o deload e voltei 100%. Ebook essencial."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">L</div>
+        <div class="author-info">
+          <strong>Lucas A.</strong>
+          <span>Intermediário · RS</span>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <div class="testimonial-stars">★★★★★</div>
+      <p>"Linguagem acessível mas sem ser superficial. Senti que estava lendo um material universitário, mas entendendo tudo. Vale muito mais que o preço pago."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">A</div>
+        <div class="author-info">
+          <strong>Ana P.</strong>
+          <span>Iniciante · CE</span>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <div class="testimonial-stars">★★★★★</div>
+      <p>"Uso como referência até hoje. Sempre que tenho dúvida sobre treino ou nutrição, vou lá consultar. É o tipo de conteúdo que não fica desatualizado."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">M</div>
+        <div class="author-info">
+          <strong>Marcos D.</strong>
+          <span>Avançado · BA</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BONUSES ── -->
+<div style="background: #0a0a0a; border-top: 1px solid #1a1a1a; border-bottom: 1px solid #1a1a1a;">
+  <section style="background: transparent;">
+    <div class="section-tag">Bônus exclusivos</div>
+    <h2 class="section-title">Leva o ebook<br><em>+ 3 bônus grátis</em></h2>
+    <p class="section-sub">Por tempo limitado, ao adquirir FERRO & CIÊNCIA você recebe estes bônus sem custo adicional.</p>
+    <div class="bonuses-grid">
+      <div class="bonus-card">
+        <span class="bonus-tag">Bônus 01</span>
+        <h4>PLANILHA DE TREINO</h4>
+        <p>Planilha editável para registrar séries, repetições e cargas. Acompanhe sua evolução semana a semana.</p>
+        <div class="bonus-value">Valor: R$ 37 — GRÁTIS</div>
+      </div>
+      <div class="bonus-card">
+        <span class="bonus-tag">Bônus 02</span>
+        <h4>GUIA DE SUPLEMENTAÇÃO</h4>
+        <p>Mini-guia com tudo que a ciência realmente valida: dosagens, horários e o que é apenas marketing.</p>
+        <div class="bonus-value">Valor: R$ 27 — GRÁTIS</div>
+      </div>
+      <div class="bonus-card">
+        <span class="bonus-tag">Bônus 03</span>
+        <h4>CALCULADORA DE MACROS</h4>
+        <p>Ferramenta simples para calcular suas calorias e macronutrientes para qualquer objetivo.</p>
+        <div class="bonus-value">Valor: R$ 17 — GRÁTIS</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ── GUARANTEE ── -->
+<section class="guarantee-section">
+  <div class="section-tag">Sem risco</div>
+  <div class="guarantee-inner">
+    <div class="guarantee-badge">
+      <div class="guarantee-badge-days">7</div>
+      <div class="guarantee-badge-text">Dias de<br>Garantia</div>
+    </div>
+    <div class="guarantee-content">
+      <h2>GARANTIA INCONDICIONAL DE 7 DIAS</h2>
+      <p style="margin-bottom: 16px;">Se por qualquer motivo você não ficar 100% satisfeito com o conteúdo, basta enviar um e-mail em até 7 dias após a compra e devolvemos cada centavo — sem perguntas, sem burocracia, sem enrolação.</p>
+      <p>Você não tem absolutamente nada a perder. O risco é todo nosso.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── FINAL CTA ── -->
+<div class="final-cta" id="cta">
+  <div class="final-cta-inner">
+    <div class="section-tag" style="justify-content: center; display: flex;">Oferta especial</div>
+    <h2>Para de treinar<br><em>no achismo.</em></h2>
+    <p>Junte-se a mais de 12.000 pessoas que já escolheram treinar com ciência.</p>
+    <div class="cta-package">
+      <div class="cta-package-title">O que você leva hoje</div>
+      <ul class="cta-includes">
+        <li>Ebook FERRO & CIÊNCIA — 10 capítulos completos</li>
+        <li>Acesso imediato após o pagamento</li>
+        <li>Bônus 01: Planilha de Treino Editável</li>
+        <li>Bônus 02: Guia de Suplementação Baseado em Ciência</li>
+        <li>Bônus 03: Calculadora de Macros</li>
+        <li>Garantia incondicional de 7 dias</li>
+        <li>Atualizações gratuitas para sempre</li>
+      </ul>
+      <div class="cta-price-row">
+        <span class="cta-old">R$ 47</span>
+        <span class="cta-new">R$ 19,90</span>
+      </div>
+      <p class="cta-note" style="margin-bottom: 24px;">pagamento único · acesso imediato</p>
+      <a href="https://pay.cakto.com.br/39jq84j_884977" target="_blank" class="btn-cta-big">QUERO ACESSAR AGORA →</a>
+    </div>
+    <div class="security-row">
+      <div class="security-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Pagamento seguro
+      </div>
+      <div class="security-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
+        Garantia 7 dias
+      </div>
+      <div class="security-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Acesso imediato
+      </div>
+      <div class="security-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg>
+        Pix · Cartão · Boleto
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FAQ ── -->
+<section>
+  <div class="section-tag">Dúvidas frequentes</div>
+  <h2 class="section-title">Perguntas<br><em>frequentes</em></h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        Funciona para quem está começando do zero?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">Sim. O ebook foi estruturado do básico ao avançado. O capítulo 1 começa explicando o que é musculação e o capítulo 5 traz um programa específico para iniciantes com 3 treinos semanais.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        Como recebo o ebook após a compra?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">Imediatamente após a confirmação do pagamento você recebe um e-mail com o link de download. O acesso é instantâneo, 24 horas por dia, 7 dias por semana.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        Preciso de algum equipamento específico?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">Os programas foram desenvolvidos para academia com equipamentos convencionais (barras, halteres, máquinas). A maioria dos exercícios pode ser adaptada para home gym com o equipamento básico.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        O conteúdo funciona para mulheres também?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">Completamente. Os princípios de hipertrofia, nutrição e recuperação são aplicáveis independentemente do sexo. O ebook aborda as especificidades fisiológicas femininas onde necessário.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        E se eu não gostar? Posso pedir reembolso?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">Sim. Você tem 7 dias corridos a partir da data da compra para solicitar reembolso total, sem precisar justificar. Basta enviar um e-mail e processamos em até 5 dias úteis.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        O ebook recebe atualizações?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">Sim. Todas as atualizações futuras são gratuitas para quem já adquiriu. A ciência do exercício avança e o ebook acompanha essas atualizações sem custo adicional.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-logo">FERRO <span>&</span> CIÊNCIA</div>
+  <p>© 2025 · Todos os direitos reservados · Conteúdo baseado em evidências científicas</p>
+</footer>
+
+<script>
+// COUNTDOWN TIMER
+function updateTimer() {
+  const el = document.getElementById('timer');
+  if (!el) return;
+  let [h, m, s] = el.textContent.split(':').map(Number);
+  if (s > 0) s--;
+  else if (m > 0) { m--; s = 59; }
+  else if (h > 0) { h--; m = 59; s = 59; }
+  el.textContent = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+}
+setInterval(updateTimer, 1000);
+
+// FAQ ACCORDION
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// SCROLL ANIMATIONS
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.pain-card, .chapter-item, .testimonial, .bonus-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
